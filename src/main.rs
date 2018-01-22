@@ -121,7 +121,7 @@ fn parse_query(query: &str) -> Result<TimeRange, String> {
         .collect::<HashMap<String, String>>();
 
     let before = args.get("before").map(|value| value.parse::<i64>());
-    if let Some(ref result) = before {
+    if let (Some(ref result), Err(ref error)) = (before, before.unwrap()) {
         if let Err(ref error) = *result {
             return Err(format!("Error parsing 'before': {}", error));
         }

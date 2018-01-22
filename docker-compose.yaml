@@ -1,0 +1,26 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    networks:
+      - network
+    ports:
+       - "8080:80"
+    environment:
+      DATABASE_URL: postgresql://postgres:secret@db:5432
+      RUST_BACKTRACE: 1
+      RUST_LOG: microservice=debug
+  db:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-db
+    restart: always
+    networks:
+      - network
+    environment:
+      POSTGRES_PASSWORD: secret
+
+networks:
+  network:
