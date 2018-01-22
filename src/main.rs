@@ -77,10 +77,17 @@ fn write_to_db(
     let timestamp = diesel::insert_into(messages::table)
         .values(&new_message)
         .returning(messages::timestamp)
-        .get_result(db_connection)
-        .unwrap();
+        .get_result(db_connection);
 
-    futures::future::ok(timestamp)
+    match timestamp {
+        Ok(timestamp) => futures::future::ok(timestamp),
+        Err(error) => {
+            error!("Error writing to database: {}", error.description());
+            futures::future::err(hyper::Error::from(
+                io::Error::new(io::ErrorKind::Other, "service error"),
+            ))
+        }
+    }
 }
 
 fn make_error_response(error_message: &str) -> FutureResult<hyper::Response, hyper::Error> {
@@ -121,7 +128,7 @@ fn parse_query(query: &str) -> Result<TimeRange, String> {
         .collect::<HashMap<String, String>>();
 
     let before = args.get("before").map(|value| value.parse::<i64>());
-    if let (Some(ref result), Err(ref error)) = (before, before.unwrap()) {
+    if let Some(ref result) = before {
         if let Err(ref error) = *result {
             return Err(format!("Error parsing 'before': {}", error));
         }
@@ -135,7 +142,7 @@ fn parse_query(query: &str) -> Result<TimeRange, String> {
     }
 
     Ok(TimeRange {
-        before: before.map(move |b| b.unwrap()),
+        before: before.map(|b| b.unwrap()),
         after: after.map(|a| a.unwrap()),
     })
 }
