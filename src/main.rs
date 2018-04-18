@@ -57,10 +57,7 @@ fn parse_form(form_chunk: Chunk) -> FutureResult<NewMessage, hyper::Error> {
 
     if let Some(message) = form.remove("message") {
         let username = form.remove("username").unwrap_or(String::from("anonymous"));
-        futures::future::ok(NewMessage {
-            username: username,
-            message: message,
-        })
+        futures::future::ok(NewMessage { username, message })
     } else {
         futures::future::err(hyper::Error::from(io::Error::new(
             io::ErrorKind::InvalidInput,
