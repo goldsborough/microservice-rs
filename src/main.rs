@@ -125,17 +125,13 @@ fn parse_query(query: &str) -> Result<TimeRange, String> {
         .collect::<HashMap<String, String>>();
 
     let before = args.get("before").map(|value| value.parse::<i64>());
-    if let Some(ref result) = before {
-        if let Err(ref error) = *result {
-            return Err(format!("Error parsing 'before': {}", error));
-        }
+    if let Some(Err(ref error)) = before {
+        return Err(format!("Error parsing 'before': {}", error));
     }
 
     let after = args.get("after").map(|value| value.parse::<i64>());
-    if let Some(ref result) = after {
-        if let Err(ref error) = *result {
-            return Err(format!("Error parsing 'after': {}", error));
-        }
+    if let Some(Err(ref error)) = after {
+        return Err(format!("Error parsing 'after': {}", error));
     }
 
     Ok(TimeRange {
