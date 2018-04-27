@@ -143,25 +143,19 @@ fn parse_query(query: &str) -> Result<TimeRange, String> {
 fn query_db(time_range: TimeRange, db_connection: &PgConnection) -> Option<Vec<Message>> {
     use schema::messages;
     let TimeRange { before, after } = time_range;
-    let query_result = match (before, after) {
-        (Some(before), Some(after)) => {
-            messages::table
-                .filter(messages::timestamp.lt(before as i64))
-                .filter(messages::timestamp.gt(after as i64))
-                .load::<Message>(db_connection)
-        }
-        (Some(before), _) => {
-            messages::table
-                .filter(messages::timestamp.lt(before as i64))
-                .load::<Message>(db_connection)
-        }
-        (_, Some(after)) => {
-            messages::table
-                .filter(messages::timestamp.gt(after as i64))
-                .load::<Message>(db_connection)
-        }
-        _ => messages::table.load::<Message>(db_connection),
-    };
+
+    let mut query = messages::table.into_boxed();
+
+    if let Some(before) = before {
+        query = query.filter(messages::timestamp.lt(before as i64))
+    }
+
+    if let Some(after) = after {
+        query = query.filter(messages::timestamp.gt(after as i64))
+    }
+
+    let query_result = query.load::<Message>(db_connection);
+
     match query_result {
         Ok(result) => Some(result),
         Err(error) => {
