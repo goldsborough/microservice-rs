@@ -41,7 +41,7 @@ mod schema;
 
 use models::{Message, NewMessage};
 
-const DEFAULT_DATABASE_URL: &'static str = "postgresql://postgres@localhost:5432";
+const DEFAULT_DATABASE_URL: &str = "postgresql://postgres@localhost:5432";
 
 struct Microservice;
 
