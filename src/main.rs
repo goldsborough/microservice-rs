@@ -191,6 +191,7 @@ fn make_get_response(
             let body = render_page(messages);
             Response::new()
                 .with_header(ContentLength(body.len() as u64))
+                .with_header(ContentType::html())
                 .with_body(body)
         }
         None => Response::new().with_status(StatusCode::InternalServerError),
