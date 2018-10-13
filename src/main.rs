@@ -1,4 +1,4 @@
-#![feature(proc_macro)]
+#![feature(proc_macro_hygiene)]
 
 extern crate hyper;
 extern crate maud;
@@ -168,8 +168,8 @@ fn query_db(time_range: TimeRange, db_connection: &PgConnection) -> Option<Vec<M
 fn render_page(messages: Vec<Message>) -> String {
     (html! {
         head {
-            title "microservice"
-            style "body { font-family: monospace }"
+            title {"microservice"}
+            style {"body { font-family: monospace }"}
         }
         body {
             ul {

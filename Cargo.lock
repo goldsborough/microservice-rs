@@ -311,25 +311,26 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "maud"
-version = "0.17.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+version = "0.18.1"
+source = "git+https://github.com/lfairy/maud#d2af7c3f543c935f709685c58da960b431361f6a"
 dependencies = [
- "maud_htmlescape 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "maud_macros 0.17.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "maud_htmlescape 0.17.0 (git+https://github.com/lfairy/maud)",
+ "maud_macros 0.18.1 (git+https://github.com/lfairy/maud)",
 ]
 
 [[package]]
 name = "maud_htmlescape"
 version = "0.17.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+source = "git+https://github.com/lfairy/maud#d2af7c3f543c935f709685c58da960b431361f6a"
 
 [[package]]
 name = "maud_macros"
-version = "0.17.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
+version = "0.18.1"
+source = "git+https://github.com/lfairy/maud#d2af7c3f543c935f709685c58da960b431361f6a"
 dependencies = [
  "literalext 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "maud_htmlescape 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "matches 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "maud_htmlescape 0.17.0 (git+https://github.com/lfairy/maud)",
 ]
 
 [[package]]
@@ -362,7 +363,7 @@ dependencies = [
  "futures 0.1.17 (registry+https://github.com/rust-lang/crates.io-index)",
  "hyper 0.11.14 (registry+https://github.com/rust-lang/crates.io-index)",
  "log 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "maud 0.17.3 (registry+https://github.com/rust-lang/crates.io-index)",
+ "maud 0.18.1 (git+https://github.com/lfairy/maud)",
  "postgres 0.15.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde 1.0.27 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_derive 1.0.27 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -972,9 +973,9 @@ dependencies = [
 "checksum log 0.3.9 (registry+https://github.com/rust-lang/crates.io-index)" = "e19e8d5c34a3e0e2223db8e060f9e8264aeeb5c5fc64a4ee9965c062211c024b"
 "checksum log 0.4.1 (registry+https://github.com/rust-lang/crates.io-index)" = "89f010e843f2b1a31dbd316b3b8d443758bc634bed37aabade59c686d644e0a2"
 "checksum matches 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)" = "100aabe6b8ff4e4a7e32c1c13523379802df0772b82466207ac25b013f193376"
-"checksum maud 0.17.3 (registry+https://github.com/rust-lang/crates.io-index)" = "0503d6431e4738b233e2c3571bfd130afa9256991bd58e86346bc040c53fde62"
-"checksum maud_htmlescape 0.17.0 (registry+https://github.com/rust-lang/crates.io-index)" = "d0fb85bccffc42302ad1e1ed8679f6a39d1317f775a37fbc3f79bdfbe054bfb7"
-"checksum maud_macros 0.17.3 (registry+https://github.com/rust-lang/crates.io-index)" = "10dbbfa73e7043b8452393e06d6e9cf9196c0bc87e842ebafbbd0b5bdef4bfd3"
+"checksum maud 0.18.1 (git+https://github.com/lfairy/maud)" = "<none>"
+"checksum maud_htmlescape 0.17.0 (git+https://github.com/lfairy/maud)" = "<none>"
+"checksum maud_macros 0.18.1 (git+https://github.com/lfairy/maud)" = "<none>"
 "checksum md5 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)" = "b6d9aab58e540f50b59d5cfa7f0da4c3d437476890e1e0b6206e230dce55a23c"
 "checksum memchr 1.0.2 (registry+https://github.com/rust-lang/crates.io-index)" = "148fab2e51b4f1cfc66da2a7c32981d1d3c083a803978268bb11fe4b86925e7a"
 "checksum memchr 2.0.1 (registry+https://github.com/rust-lang/crates.io-index)" = "796fba70e76612589ed2ce7f45282f5af869e0fdd7cc6199fa1aa1f1d591ba9d"
