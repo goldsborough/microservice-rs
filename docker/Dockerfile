@@ -10,6 +10,6 @@ WORKDIR /var/www/microservice/
 COPY . .
 
 RUN rustc --version
-RUN cargo install
+RUN cargo install --path .
 
 CMD ["microservice"]
